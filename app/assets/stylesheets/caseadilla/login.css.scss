@@ -1,0 +1,76 @@
+/*
+ *= require ./bootstrap.css
+ *= require ./bootstrap-glyphicons.css
+ *= require ./caseadilla-bootstrap-overrides.css
+*/
+
+body {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.container-narrow {
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+.alert {
+	text-align: center;
+}
+
+.brand {
+	margin-top: 20px;
+	margin-bottom: 40px;
+}
+
+.form-group .checkbox-inline label {
+	margin-top: 5px;
+	margin-bottom: 20px;
+	font-weight: normal;
+}
+
+.form-group .checkbox-inline input[type="checkbox"] {
+	margin-top: 1px;
+}
+
+.form-group input {
+	text-align: center;
+}
+
+.jumbotron {
+  padding: 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  line-height: 1;
+  background-color: #eeeeee;
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+footer p {
+	font-size: 13px;
+	text-align: center;
+	color: #888;
+}
+
+footer p a {
+	color: #555;
+}
+
+footer p a:hover {
+	color: #000;
+	text-decoration: none;
+}
+
+@media screen and (min-width: 768px) {
+  .jumbotron {
+    border-bottom: 0;
+    padding: 20px;
+    border-radius: 6px;
+  }
+
+  body {
+  	padding-top: 40px;
+  	padding-bottom: 20px;
+  }
+}

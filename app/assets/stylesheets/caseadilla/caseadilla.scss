@@ -1,0 +1,259 @@
+/*
+ *= require ./bootstrap.css
+ *= require ./bootstrap-glyphicons.css
+ *= require ./caseadilla-bootstrap-overrides.css
+*/
+
+/* Caseadilla LAYOUT */
+
+@media (min-width: 992px){
+
+    #left-column {
+    	float: left;
+    }
+
+    #right-column {
+    	float: right;
+    }
+
+}
+
+/* Caseadilla NAVIGATION BAR */
+
+.caseadilla-tab-separator {
+	display: none;
+}
+
+@media (min-width: 768px){
+    .caseadilla-tab-separator {
+    	display: block;
+    	float: left;
+    	width: 9px;
+		height: 12px;
+		border-right: 1px solid #cdcdcd;
+		margin-right: 10px;
+		margin-top: 15px;
+	}
+}
+
+#user-info {
+	font-size: 12px;
+	padding-top: 10px;
+	height: auto;
+}
+
+#user-info ul {
+	list-style: none;
+	float: right;
+}
+
+#user-info li {
+	float: left;
+	border-right: 1px solid #ddd;
+	padding: 3px 8px 3px 8px;
+	margin: 0;
+	color: #888;
+}
+
+#user-info li.last-item {
+	border-right: none;
+}
+
+#user-info li a {
+	color: #555;
+	text-decoration: none;
+}
+
+#user-info li a:hover {
+	color: #000;
+	border-bottom: 1px solid #000;
+}
+
+#user-info li.signout:hover {
+	border-radius: 6px;
+	background-color: #da0404;
+}
+
+#user-info li.signout a:hover {
+	color: #eee;
+	border-bottom: none;
+}
+
+#user-info li.signout:hover a {
+	color: #eee;
+}
+
+/* Caseadilla CONTENT GENERAL */
+
+.password-checkbox {
+	margin-bottom: 15px;
+}
+
+small.pagination-details {
+	font-size: 0.5em;
+}
+
+div#content {
+	margin-bottom: 20px;
+}
+
+#content h2 {
+	font-size: 20px;
+	font-weight: bold;
+	color: #111;
+	border-bottom: 2px solid #eee;
+	padding: 0 0 10px 0;
+	margin: 0 0 15px 0;
+	position: relative;
+	line-height: 26px;
+}
+
+.content-bottom-padding {
+	padding-bottom: 20px;
+}
+
+footer p {
+	font-size: 10px;
+	text-align: right;
+	color: #ccc;
+}
+
+footer p a {
+	color: #ccc;
+}
+
+footer p a:hover {
+	color: #aaa;
+}
+
+.icon {
+	position: relative;
+	top: 1px;
+	float: left;
+	height: 14px;
+	width: 14px;
+	margin-right: 5px;
+	font-size: 14px;
+	padding: 0px;
+	vertical-align: baseline;
+}
+
+/* Caseadilla TABLES */
+
+#content .table {
+	border-collapse: collapse;
+	width: 100%;
+	font-size: 12px;
+	border-bottom: 2px solid #ccc;
+}
+
+#content .table .center {
+	text-align: center;
+}
+
+#content .table .icon {
+	width: 16px;
+}
+
+#content .table thead {
+	border-bottom: 2px solid #ccc;
+}
+
+#content .table th div.table-header-icon {
+	display: inline-block;
+	margin-left: 5px;
+	width: 12px;
+	height: 12px;
+	color: #555;
+	position: relative;
+	top: 1px;
+}
+
+#content .table td {
+	padding: 0px;
+	font-size: 12px;
+	margin: 0px;
+	line-height: 18px;
+}
+
+#content .table td a {
+	display: block;
+	color: #333;
+	text-decoration: none;
+	padding: 15px 10px 15px 10px;
+}
+
+#content .table td .no-link {
+	display: block;
+	color: #333;
+	padding: 15px 10px 15px 10px;
+}
+
+.iconRow {
+	height: 16px;
+	width: 16px;
+	padding: 2px;
+	font-size: 12px;
+}
+
+#content .table td.delete {
+	width: 30px;
+}
+
+#content .table td.delete:hover .iconRow {
+	border-radius: 4px;
+	background-color: #da0404;
+	color: #ffffff;
+}
+
+#content .table td.delete a {
+	padding: 13px 10px 0px 10px;
+}
+
+#content .submits {
+	width: 100%;
+	text-align: right;
+	border-radius: 4px;
+	font-size: 12px;
+	padding: 10px 10px;
+	background-color: #eee;
+	margin-bottom: 30px;
+}
+
+/* Caseadilla FORMS */
+
+label.control-label small {
+	font-weight: normal;
+	color: #666;
+	margin-left: 5px;
+	font-size: 0.8em; 
+}
+
+.caseadilla-date-select select {
+	width: 28%;
+	display: inline-block;
+	margin-left: 2%;
+	margin-right: 2%
+}
+
+.caseadilla-time-select select {
+	width: 44%;
+	display: inline-block;
+	margin-left: 2%;
+	margin-right: 2%
+}
+
+.caseadilla-datetime-select select {
+	width: 27%;
+	display: inline-block;
+	margin-left: 2%;
+	margin-right: 2%;
+	margin-bottom: 20px;
+}
+
+@media (min-width: 992px){
+    div.col-lg-12 .caseadilla-datetime-select select {
+		width: 14%;
+	margin-bottom: 0px;
+	}
+}
