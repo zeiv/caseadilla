@@ -37,6 +37,11 @@ body {
 	text-align: center;
 }
 
+form#new_user input.btn-large {
+    background-color: rgb(220, 120, 40);
+    border-color: rgb(175, 92, 32);
+}
+
 .jumbotron {
   padding: 20px;
   margin-bottom: 20px;
