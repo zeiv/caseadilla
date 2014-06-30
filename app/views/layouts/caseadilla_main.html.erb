@@ -28,20 +28,20 @@
 
   <body>
     <div class="navbar navbar-static-top">
-      <% if @session_user != nil %>
+      <% if current_user != nil %>
         <div class="container">
           <div id="user-info">
             <ul>
-              <li class="hidden-sm">Hello <%= @session_user.name %></li>
+              <li class="hidden-sm">Hello <%= current_user.first_name %></li>
               <li class="hidden-sm"><%= Time.zone.name %></li>
-              <li><%= link_to 'Profile', caseadilla_user_path(@session_user) %></li>
+              <li><%= link_to 'Profile', caseadilla_user_path(current_user) %></li>
 
-              <% if @session_user.is_admin? %>
+              <% if current_user #.is_admin? %>
                 <li><%= link_to 'Users', caseadilla_users_path %></li>
               <% end %>
 
               <%= render :partial => '/caseadilla/layouts/top_navigation' %>
-              <li class="last-item signout"><%= link_to 'Sign out', caseadilla_admin_user_session_path, :method => :delete %></li>
+              <li class="last-item signout"><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
             </ul>
           </div>
         </div>

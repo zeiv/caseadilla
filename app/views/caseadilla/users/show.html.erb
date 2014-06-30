@@ -1,34 +1,30 @@
 <h2>View user</h2>
 
-<%= form_for @caseadilla_user do |f| %>
+<%= form_for resource, as: resource_name, url: registration_path(resource_name), html:{ method: :put } do |f| %>
 
 	<div class="row">
-  		<div class="col-lg-6">
-			<%= caseadilla_text_field f, f.object, :login, {:size => 30, :caseadilla_label => "Username"} %>
+		<div class="col-lg-6">
+			<%= caseadilla_text_field f, f.object, :first_name, {value: @caseadilla_user.first_name, caseadilla_label: "First name"} %>
 		</div>
 		<div class="col-lg-6">
-			<%= caseadilla_text_field f, f.object, :name %>
+			<%= caseadilla_text_field f, f.object, :last_name, {value: @caseadilla_user.last_name, caseadilla_label: "Last name"} %>
 		</div>
 	</div>
 
 	<div class="row">
   		<div class="col-lg-6">
-			<%= caseadilla_text_field f, f.object, :email %>
+			<%= caseadilla_text_field f, f.object, :email, {value: @caseadilla_user.email} %>
 		</div>
 		<div class="col-lg-6">
-			<%= caseadilla_time_zone_select f, f.object, :time_zone, ActiveSupport::TimeZone.us_zones %>
+			<%= caseadilla_time_zone_select f, f.object, :time_zone, ActiveSupport::TimeZone.us_zones, {value: ActiveSupport::TimeZone[@caseadilla_user.time_zone]} %>
 		</div>
 	</div>
 
-	<% if @session_user.is? && (@caseadilla_user.is? == false || Caseadilla::User.has_more_than_one) %>
-		<div class="row">
-  			<div class="col-lg-6">
-				<%= caseadilla_select f, f.object, :access_level, caseadilla_get_access_level_array, {:caseadilla_label => "Role"} %>
-			</div>
-			<div class="col-lg-6">
-			</div>
+	<div class="row">
+  		<div class="col-lg-6">
+			<%= caseadilla_password_field f, f.object, :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
 		</div>
-	<% end %>
+	</div>
 
 	<p class="submits">
 	  	<%= link_to 'Cancel', caseadilla_users_path, :class => 'btn btn-mini btn-danger' %>
@@ -36,69 +32,8 @@
 	</p>
 <% end %>
 
-<% if @session_user.is? %>
-
-	<h2>Reset password <small>(admin action &mdash; use carefully)</small></h2>
-
-	<%= form_for @caseadilla_user, :url => reset_password_caseadilla_user_path(@caseadilla_user) do |f| %>
-
-		<div class="row">
-  			<div class="col-lg-6">
-				<%= caseadilla_password_field f, f.object, :password, {:caseadilla_label => "New password"} %>
-			</div>
-			<div class="col-lg-6">
-				<%= caseadilla_password_field f, f.object, :password_confirmation, {:caseadilla_label => "Repeat new password"} %>
-			</div>
-			<div class="col-lg-12 password-checkbox">
-				<div class="checkbox">
-		      		<label>
-		      			<%= check_box_tag :generate_random_password, "1", false, {:id => 'generate-random-password-checkbox'} %> Generate random password
-		      		</label>
-		    	</div>
-		    </div>
-		</div>
-		
-		<p class="submits">
-			<%= f.submit "Reset", :class => "btn btn-mini btn-warning" %>
-		</p>
-		
-	<% end %>
-	
-<% elsif @session_user.id == @caseadilla_user.id %>
-
-	<h2>Change password</h2>
-
-	<%= form_for @caseadilla_user, :url => update_password_caseadilla_user_path(@caseadilla_user) do |f| %>
-
-		<div class="row">
-  			<div class="col-lg-6">
-  				<div class="form-group">
-					<%= label_tag :form_current_password, "Current password" %>
-					<%= password_field_tag :form_current_password, "", {:class => 'form-control'} %>
-				</div>
-			</div>
-			<div class="col-lg-6">
-			</div>
-		</div>
-
-		<div class="row">
-  			<div class="col-lg-6">
-				<%= caseadilla_password_field f, f.object, :password, {:caseadilla_label => "New password"} %>
-			</div>
-			<div class="col-lg-6">
-				<%= caseadilla_password_field f, f.object, :password_confirmation, {:caseadilla_label => "Repeat new password"} %>
-			</div>
-		</div>
-		
-		<p class="submits">
-			<%= f.submit "Change", :class => "btn btn-mini btn-primary" %>
-		</p>
-
-	<% end %>
-<% end %>
-
 <%= content_for :sidebar do %>
-	<% if @session_user.is_admin? %>
+	<% if current_user #.is_admin? %>
   		<li><%= link_to "#{caseadilla_show_icon('th-list')}Back to list".html_safe, caseadilla_users_path %></li>
 	<% end %>
 <% end %>

@@ -167,9 +167,9 @@ module Caseadilla
   		caseadilla_form_tag_wrapper(form.select(attribute, option_tags, strip_caseadilla_options(options), merged_class_hash(options, 'form-control')), form, obj, attribute, options).html_safe
   	end
   	
-  	# def caseadilla_time_zone_select form, obj, attribute, option_tags, options = {}
-  	#   caseadilla_form_tag_wrapper(form.time_zone_select(attribute, option_tags, strip_caseadilla_options(options), merged_class_hash(options, 'form-control')), form, obj, attribute, options).html_safe
-  	# end
+  	def caseadilla_time_zone_select form, obj, attribute, option_tags, options = {}
+  	  caseadilla_form_tag_wrapper(form.time_zone_select(attribute, option_tags, strip_caseadilla_options(options), merged_class_hash(options, 'form-control')), form, obj, attribute, options).html_safe
+  	end
 	
   	def caseadilla_collection_select form, obj, attribute, collection, value_method, text_method, options = {}
   		caseadilla_form_tag_wrapper(collection_select(obj, attribute, collection, value_method, text_method, strip_caseadilla_options(options), merged_class_hash(options, 'form-control')), form, obj, attribute, options).html_safe

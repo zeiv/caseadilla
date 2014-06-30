@@ -5,11 +5,11 @@ Rails.application.routes.draw do
   namespace :caseadilla do
   
     if Caseadilla::Engine.flavor = :steak
-      # resources :users do
-      #   member do
-      #     patch :update_password, :reset_password
-      #   end
-      # end
+      resources :users do
+        # member do
+        #   patch :update_password, :reset_password
+        # end
+      end
       
       match "/sign_in" => "caseadilla_user_sessions#new", via: :get
       # resource :password_reset, :only => [:create, :edit, :update]
