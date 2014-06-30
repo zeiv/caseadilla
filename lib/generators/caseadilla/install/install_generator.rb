@@ -5,64 +5,68 @@ module Caseadilla
     source_root File.expand_path('../templates', __FILE__)
     argument :flavor, type: :string, default: "auto"
 
-    if flavor = "auto"
-      puts "\nWelcome to Caseadilla! Please enter a flavor to install:"
-      puts "\n[steak] This is recommended for a fresh Rails app.  Caseadilla will set up Devise and Declarative Authorization for you, along with an admin user and various authorization roles."
-      puts "\n[chicken] Select this if you have auth in place already or plan to use something other than Devise or Declarative Authorization.  Caseadilla will use methods such as `current_user.is_admin?` to help with auth integration.  See the readme for more details."
-      puts "\n[veggie] This flavor will install Caseadilla as minimally as possible, without any auth support.  You will be responsible for implementing authorization and authentication into Caseadilla.\n"
-      flavor_choice = STDIN.gets.chomp
-      flavor = flavor_choice
-    end
-
-    case flavor
-    when "steak"
-      target = "steak"
-
-      gem 'devise'
-      gem 'declarative_authorization', git: 'git://github.com/zeiv/declarative_authorization'
-
-      def self.next_migration_number dirname
-        if ActiveRecord::Base.timestamped_migrations
-          Time.now.utc.strftime("%Y%m%d%H%M%S")
-        else
-          "%.3d" % (current_migration_number(dirname) + 1)
-        end
+    def install_flavor
+      @flavor = self.flavor
+      if @flavor == "auto"
+        puts "\nWelcome to Caseadilla! Please enter a flavor to install:"
+        puts "\n[steak] This is recommended for a fresh Rails app.  Caseadilla will set up Devise and Declarative Authorization for you, along with an admin user and various authorization roles."
+        puts "\n[chicken] Select this if you have auth in place already or plan to use something other than Devise or Declarative Authorization.  Caseadilla will use methods such as `current_user.is_admin?` to help with auth integration.  See the readme for more details."
+        puts "\n[veggie] This flavor will install Caseadilla as minimally as possible, without any auth support.  You will be responsible for implementing authorization and authentication into Caseadilla.\n\n"
+        flavor_choice = STDIN.gets.chomp
+        @flavor = flavor_choice
       end
-  
-      def generate_migrations
+
+      case @flavor
+      when "steak"
+        @target = "steak"
+
+        gem 'devise'
+        gem 'declarative_authorization', git: 'git://github.com/zeiv/declarative_authorization'
+        Bundler.with_clean_env do
+          run 'bundle install'
+        end
+
+        def self.next_migration_number dirname
+          if ActiveRecord::Base.timestamped_migrations
+            Time.now.utc.strftime("%Y%m%d%H%M%S")
+          else
+            "%.3d" % (current_migration_number(dirname) + 1)
+          end
+        end
+
         migration_template 'steak/db/migrate/create_users.rb', "db/migrate/create_users.rb"
+
+        rake 'db:migrate'
+
+        generate 'devise:install'
+        generate 'devise', 'User'
+        rake 'db:migrate'
+
+        inject_into_file 'app/helpers/application_helper.rb', after: "module ApplicationHelper\n" do <<-'RUBY'
+          def resource_name
+            :user
+          end
+
+          def resource
+            @resource ||= User.new
+          end
+
+          def devise_mapping
+            @devise_mapping ||= Devise.mappings[:user]
+          end
+        RUBY
+        end
+      when "chicken"
+        @target = "chicken"
+      when "veggie"
+        @target = "veggie"
+      else
+        puts "That flavor is not recognized.  Please enter steak, chicken, or veggie.  E.g., for a full install use `rails g caseadilla:install steak`"
       end
-
-      rake 'db:migrate'
-
-      generate 'devise:install'
-      generate 'devise', 'User'
-      rake 'db:migrate'
-
-      inject_into_file 'app/helpers/application_helpers.rb', after: 'module ApplicationHelper\n' do <<- 'RUBY'
-        def resource_name
-          :user
-        end
-
-        def resource
-          @resource ||= User.new
-        end
-
-        def devise_mapping
-          @devise_mapping ||= Devise.mappings[:user]
-        end
-      RUBY
-      end
-    when "chicken"
-      target = "chicken"
-    when "veggie"
-      target = "veggie"
-    else
-      puts "That flavor is not recognized.  Please enter steak, chicken, or veggie.  E.g., for a full install use `rails g caseadilla:install steak`"
     end
 
     def flavor_files
-      copy_file "#{target}/config/initializers/caseadilla.rb", "config/initializers/caseadilla.rb"
+      copy_file "#{@target}/config/initializers/caseadilla.rb", "config/initializers/caseadilla.rb"
     end
 
     def common_files
@@ -85,6 +89,11 @@ module Caseadilla
       copy_file "public/robots.txt", "public/robots.txt"
     end
 
+    # protected
+    # attr_reader :flavor
 
+    # def assign_flavor!(f)
+    #   @flavor = f
+    # end
   end
 end

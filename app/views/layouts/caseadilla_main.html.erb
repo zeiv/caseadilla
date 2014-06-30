@@ -34,10 +34,10 @@
             <ul>
               <li class="hidden-sm">Hello <%= @session_user.name %></li>
               <li class="hidden-sm"><%= Time.zone.name %></li>
-              <li><%= link_to 'Profile', caseadilla_admin_user_path(@session_user) %></li>
+              <li><%= link_to 'Profile', caseadilla_user_path(@session_user) %></li>
 
               <% if @session_user.is_admin? %>
-                <li><%= link_to 'Users', caseadilla_admin_users_path %></li>
+                <li><%= link_to 'Users', caseadilla_users_path %></li>
               <% end %>
 
               <%= render :partial => '/caseadilla/layouts/top_navigation' %>

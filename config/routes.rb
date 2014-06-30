@@ -4,16 +4,16 @@ Rails.application.routes.draw do
   
   namespace :caseadilla do
   
-    # if Caseadilla::Engine.flavor = :steak
-    #   resources :users do
-    #     member do
-    #       patch :update_password, :reset_password
-    #     end
-    #   end
+    if Caseadilla::Engine.flavor = :steak
+      # resources :users do
+      #   member do
+      #     patch :update_password, :reset_password
+      #   end
+      # end
       
-    #   resource :user_session
-    #   resource :password_reset, :only => [:create, :edit, :update]
-    # end
+      match "/sign_in" => "caseadilla_user_sessions#new", via: :get
+      # resource :password_reset, :only => [:create, :edit, :update]
+    end
         
     match "/blank" => "caseadilla#blank", :via => :get
     root :to => "caseadilla#index"
