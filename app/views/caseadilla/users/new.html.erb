@@ -1,22 +1,22 @@
 <h2>Add a new user</h2>
 
-<%= form_for resource, as: resource_name, url: registration_path(resource_name), html:{ method: :post } do |form|  %>
+<%= form_for @caseadilla_user, url: caseadilla_users_path do |form|  %>
 
 	<div class="row">
 		<div class="col-lg-6">
-			<%= caseadilla_text_field form, resource, :first_name %>
+			<%= caseadilla_text_field form, @caseadilla_user, :first_name %>
 		</div>
 		<div class="col-lg-6">
-			<%= caseadilla_text_field form, resource, :last_name %>
+			<%= caseadilla_text_field form, @caseadilla_user, :last_name %>
 		</div>
 	</div>
 
 	<div class="row">
   		<div class="col-lg-6">
-			<%= caseadilla_text_field form, resource, :email %>
+			<%= caseadilla_text_field form, @caseadilla_user, :email %>
 		</div>
 		<div class="col-lg-6">
-			<%= caseadilla_time_zone_select form, resource, :time_zone, ActiveSupport::TimeZone.us_zones %>
+			<%= caseadilla_time_zone_select form, @caseadilla_user, :time_zone, ActiveSupport::TimeZone.us_zones %>
 		</div>
 	</div>
 
@@ -24,10 +24,10 @@
 	
 	<div class="row">
   		<div class="col-lg-6">
-			<%= caseadilla_password_field form, resource, :password, {:caseadilla_label => "Password"} %>
+			<%= caseadilla_password_field form, @caseadilla_user, :password, {:caseadilla_label => "Password"} %>
 		</div>
 		<div class="col-lg-6">
-			<%= caseadilla_password_field form, resource, :password_confirmation, {:caseadilla_label => "Repeat password"} %>
+			<%= caseadilla_password_field form, @caseadilla_user, :password_confirmation, {:caseadilla_label => "Repeat password"} %>
 		</div>
 		<div class="col-lg-12 password-checkbox">
 			<div class="checkbox">

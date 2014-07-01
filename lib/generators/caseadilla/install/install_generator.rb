@@ -34,12 +34,12 @@ module Caseadilla
           end
         end
 
-        migration_template 'steak/db/migrate/create_users.rb', "db/migrate/create_users.rb"
-
-        rake 'db:migrate'
-
         generate 'devise:install'
         generate 'devise', 'User'
+        rake 'db:migrate'
+
+        migration_template 'steak/db/migrate/create_users.rb', "db/migrate/create_users.rb"
+
         rake 'db:migrate'
 
         inject_into_file 'app/helpers/application_helper.rb', after: "module ApplicationHelper\n" do <<-'RUBY'

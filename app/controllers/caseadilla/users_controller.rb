@@ -101,10 +101,8 @@ module Caseadilla
  
     def destroy
       user = User.find params[:id]
-      if user.is_admin? == false || User.has_more_than_one_admin
-        user.destroy
-        flash[:notice] = "#{user.first_name} #{user.last_name} has been deleted"
-      end
+      user.destroy
+      flash[:notice] = "#{user.first_name} #{user.last_name} has been deleted"
       redirect_to caseadilla_users_path
     end
 
@@ -112,12 +110,12 @@ module Caseadilla
 
       def generate_random_password
         random_password = random_string = SecureRandom.hex
-        params[:caseadilla_user] = Hash.new if params[:caseadilla_user].blank?
-        params[:caseadilla_user].merge! ({:password => random_password, :password_confirmation => random_password})
+        params[:user] = Hash.new if params[:user].blank?
+        params[:user].merge! ({:password => random_password, :password_confirmation => random_password})
       end
 
       def caseadilla_user_params
-        params.require(:caseadilla_user).permit(:login, :name, :email, :time_zone, :access_level, :password, :password_confirmation)
+        params.require(:user).permit(:email, :first_name, :last_name, :time_zone, :roles, :password, :password_confirmation)
       end
  
   end
