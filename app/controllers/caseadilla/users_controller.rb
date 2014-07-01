@@ -11,26 +11,26 @@ module Caseadilla
       @users = User.order(sort_order(:id)).paginate :page => params[:page]
     end
  
-    # def new
-    #   @caseadilla_page_title = "Add a new user"
-    # 	@caseadilla_user = Caseadilla::User.new
-    # 	@caseadilla_user.time_zone = Rails.configuration.time_zone
-    # end
+    def new
+      @caseadilla_page_title = "Add a new user"
+    	@caseadilla_user = User.new
+    	@caseadilla_user.time_zone = Rails.configuration.time_zone
+    end
   
-    # def create
+    def create
 
-    #   generate_random_password if params[:generate_random_password]
+      generate_random_password if params[:generate_random_password]
 
-    #   @caseadilla_user = Caseadilla::User.new caseadilla_user_params
+      @caseadilla_user = User.new caseadilla_user_params
     
-    #   if @caseadilla_user.save
-    #     flash[:notice] = "An email has been sent to " + @caseadilla_user.name + " with the new account details"
-    #     redirect_to caseadilla_users_path
-    #   else
-    #     flash.now[:warning] = "There were problems when trying to create a new user"
-    #     render :action => :new
-    #   end
-    # end
+      if @caseadilla_user.save
+        flash[:notice] = "An email has been sent to " + @caseadilla_user.first_name + " with the new account details"
+        redirect_to caseadilla_users_path
+      else
+        flash.now[:warning] = "There were problems when trying to create a new user"
+        render :action => :new
+      end
+    end
   
     def show
     	@caseadilla_user = User.find params[:id]

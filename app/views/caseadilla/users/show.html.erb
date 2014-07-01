@@ -16,7 +16,7 @@
 			<%= caseadilla_text_field f, f.object, :email, {value: @caseadilla_user.email} %>
 		</div>
 		<div class="col-lg-6">
-			<%= caseadilla_time_zone_select f, f.object, :time_zone, ActiveSupport::TimeZone.us_zones, {value: ActiveSupport::TimeZone[@caseadilla_user.time_zone]} %>
+			<%= caseadilla_time_zone_select f, f.object, :time_zone, ActiveSupport::TimeZone.us_zones, {selected: @caseadilla_user.time_zone} %>
 		</div>
 	</div>
 
