@@ -5,6 +5,14 @@ module Caseadilla
     source_root File.expand_path('../templates', __FILE__)
     argument :flavor, type: :string, default: "auto"
 
+    def self.next_migration_number dirname
+      if ActiveRecord::Base.timestamped_migrations
+        Time.now.utc.strftime("%Y%m%d%H%M%S")
+      else
+        "%.3d" % (current_migration_number(dirname) + 1)
+      end
+    end
+
     def install_flavor
       @flavor = self.flavor
       if @flavor == "auto"
@@ -26,44 +34,35 @@ module Caseadilla
           run 'bundle install'
         end
 
-        def self.next_migration_number dirname
-          if ActiveRecord::Base.timestamped_migrations
-            Time.now.utc.strftime("%Y%m%d%H%M%S")
-          else
-            "%.3d" % (current_migration_number(dirname) + 1)
-          end
-        end
-
         generate 'devise:install'
         generate 'devise', 'User'
         rake 'db:migrate'
 
-        migration_template 'steak/db/migrate/create_users.rb', "db/migrate/create_users.rb"
-
+        migration_template 'steak/db/migrate/add_name_to_users.rb', "db/migrate/add_name_to_users.rb"
         rake 'db:migrate'
 
         inject_into_file 'app/helpers/application_helper.rb', after: "module ApplicationHelper\n" do <<-'RUBY'
-          def resource_name
-            :user
-          end
+  def resource_name
+    :user
+  end
 
-          def resource
-            @resource ||= User.new
-          end
+  def resource
+    @resource ||= User.new
+  end
 
-          def devise_mapping
-            @devise_mapping ||= Devise.mappings[:user]
-          end
+  def devise_mapping
+    @devise_mapping ||= Devise.mappings[:user]
+  end
 
-          def configure_permitted_parameters
-            devise_parameter_sanitizer.for(:update) << :first_name, :last_name, :time_zone
-          end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:update) << [:first_name, :last_name, :time_zone]
+  end
         RUBY
         end
 
         inject_into_file 'app/controllers/application_controller.rb', after: "ActionController::Base\n" do <<-'RUBY'
-          before_action :configure_permitted_parameters, if: :devise_controller?
-
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  
         RUBY
         end
 
