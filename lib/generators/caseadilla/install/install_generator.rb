@@ -53,25 +53,23 @@ module Caseadilla
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:update) << [:first_name, :last_name, :time_zone]
-  end
         RUBY
         end
 
         inject_into_file 'app/controllers/application_controller.rb', after: "ActionController::Base\n" do <<-'RUBY'
   before_action :configure_permitted_parameters, if: :devise_controller?
-  
+
         RUBY
         end
 
         inject_into_file 'app/controllers/application_controller.rb', before: "\nend" do <<-'RUBY'
-          protected
 
-          def configure_permitted_parameters
-            devise_parameter_sanitizer.for(:account_update) << [:first_name, :last_name, :time_zone]
-          end
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:account_update) << [:first_name, :last_name, :time_zone]
+  end
         RUBY
         end
       when "chicken"
