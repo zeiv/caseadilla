@@ -4,8 +4,8 @@
   <thead>
     <tr>
       <th><%= caseadilla_sort_link 'Email', :email %></th>
-      <th><%= caseadilla_sort_link 'First name', :first_name %></th>
-      <th><%= caseadilla_sort_link 'Role', nil %></th>
+      <th><%= caseadilla_sort_link 'Name', :last_name %></th>
+      <th>Role</th>
       <th>&nbsp;</th>
     </tr>
   </thead>
@@ -13,8 +13,8 @@
   <% @users.each do |user| %> 
     <tr>
       <td><%= caseadilla_table_cell_link user.email, caseadilla_user_path(user) %></td>
-      <td><%= caseadilla_table_cell_link user.first_name, caseadilla_user_path(user) %></td>
-      <td>TODO: Roles</td>
+      <td><%= caseadilla_table_cell_link user.name, caseadilla_user_path(user) %></td>
+      <td><%= caseadilla_table_cell_link user.role_symbols.join(', ').titleize, caseadilla_user_path(user) %></td>
       <td class="delete">
         <% confirm_message = "Are you sure you want to delete #{user.email}?" %>
     

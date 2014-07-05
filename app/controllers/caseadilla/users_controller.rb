@@ -2,6 +2,7 @@ require 'securerandom'
 
 module Caseadilla
   class UsersController < Caseadilla::CaseadillaController
+    filter_resource_access
 
     # before_filter :needs_admin, :except => [:show, :destroy, :update, :update_password]
     # before_filter :needs_or_current_user, :only => [:show, :destroy, :update, :update_password]
@@ -43,16 +44,11 @@ module Caseadilla
 
       if @caseadilla_user.update_attributes caseadilla_user_params
         flash[:notice] = "#{@caseadilla_user.first_name} #{@caseadilla_user.last_name} has been updated"
+        redirect_to action: :index
       else
         flash.now[:warning] = "There were problems when trying to update this user"
         render :action => :show
         return
-      end
-      
-      if @session_user.is_admin?
-        redirect_to caseadilla_users_path
-      else
-        redirect_to :controller => :caseadilla, :action => :index
       end
     end
  
@@ -115,7 +111,7 @@ module Caseadilla
       end
 
       def caseadilla_user_params
-        params.require(:user).permit(:email, :first_name, :last_name, :time_zone, :roles, :password, :password_confirmation)
+        params.require(:user).permit(:email, :first_name, :last_name, :time_zone, :role, :role_id, :password, :password_confirmation)
       end
  
   end

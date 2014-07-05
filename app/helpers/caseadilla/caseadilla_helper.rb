@@ -172,8 +172,12 @@ module Caseadilla
   	end
 	
   	def caseadilla_collection_select form, obj, attribute, collection, value_method, text_method, options = {}
-  		caseadilla_form_tag_wrapper(collection_select(obj, attribute, collection, value_method, text_method, strip_caseadilla_options(options), merged_class_hash(options, 'form-control')), form, obj, attribute, options).html_safe
+  		caseadilla_form_tag_wrapper(collection_select(obj.class.name.downcase.to_sym, attribute, collection, value_method, text_method, strip_caseadilla_options(options), merged_class_hash(options, 'form-control')), form, obj, attribute, options).html_safe
   	end
+  
+    def caseadilla_collection_check_boxes form, obj, attribute, collection, value_method, text_method, options = {}
+      caseadilla_form_tag_wrapper(collection_check_boxes(obj, attribute, collection, value_method, text_method, strip_caseadilla_options(options), merged_class_hash(options, 'form-control')), form, obj, attribute, options).html_safe
+    end
   	
   	def caseadilla_date_select form, obj, attribute, options = {}
   	  caseadilla_form_tag_wrapper("<div class='caseadilla-date-select'>".html_safe + form.date_select(attribute, strip_caseadilla_options(options), merged_class_hash(options, 'form-control')) + "</div>".html_safe, form, obj, attribute, options).html_safe

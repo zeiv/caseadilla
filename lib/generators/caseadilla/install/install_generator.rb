@@ -4,6 +4,10 @@ module Caseadilla
     include Rails::Generators::Migration
     source_root File.expand_path('../templates', __FILE__)
     argument :flavor, type: :string, default: "auto"
+    class_option :no_commit, type: :boolean, default: false, desc: 'Skip bundle install and rake tasks such as migrate and seed'
+    class_option :skip_decl_auth, type: :boolean, default: false, desc: 'Skip installation of declarative_authorization'
+    class_option :auth_model, type: :string, default: "User", desc: 'Name of Model to be created for auth'
+    class_option :user_habtm_roles, type: :boolean, default: false, desc: 'Allow users to have multiple roles by setting up a HABTM association between roles'
 
     def self.next_migration_number dirname
       if ActiveRecord::Base.timestamped_migrations
@@ -28,18 +32,41 @@ module Caseadilla
       when "steak"
         @target = "steak"
 
+        gem 'simple_form'
         gem 'devise'
-        gem 'declarative_authorization', git: 'git://github.com/zeiv/declarative_authorization'
+        gem 'declarative_authorization', git: 'git://github.com/zeiv/declarative_authorization', branch: 'decl-auth-installer' unless options[:skip_decl_auth]
         Bundler.with_clean_env do
-          run 'bundle install'
+          run 'bundle install' unless options[:no_commit]
         end
 
         generate 'devise:install'
-        generate 'devise', 'User'
-        rake 'db:migrate'
+        generate 'devise', "#{options[:auth_model].capitalize}"
+        generate 'devise:views'
+        rake 'db:migrate' unless options[:no_commit]
+
+        generate "authorization:install","#{options[:auth_model].capitalize} --commit --user-belongs-to-role" unless options[:skip_decl_auth] or options[:no_commit] or options[:user_habtm_roles]
+        generate "authorization:install","#{options[:auth_model].capitalize} --commit" if options[:user_habtm_roles] and not options[:skip_decl_auth]
+        generate "authorization:install","#{options[:auth_model].capitalize}" if options[:no_commit] and not options[:skip_decl_auth]
 
         migration_template 'steak/db/migrate/add_name_to_users.rb', "db/migrate/add_name_to_users.rb"
-        rake 'db:migrate'
+        rake 'db:migrate' unless options[:no_commit]
+
+        inject_into_file "app/models/#{options[:auth_model].downcase}.rb", "  before_create :add_user_role", after: "belongs_to :role\n"
+        inject_into_file "app/models/#{options[:auth_model].downcase}.rb", after: /def role_symbols.*?end\n/m do <<-'RUBY'
+
+  def name
+    "#{first_name} #{last_name}"
+  end
+
+  private
+
+  def add_user_role
+    self.role = Role.find_by_title 'user'
+  end
+
+
+        RUBY
+        end
 
         inject_into_file 'app/helpers/application_helper.rb', after: "module ApplicationHelper\n" do <<-'RUBY'
   def resource_name
@@ -68,8 +95,17 @@ module Caseadilla
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:account_update) << [:first_name, :last_name, :time_zone]
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit({ role_ids: [] }, :email, :password, :password_confirmation, :current_password, :first_name, :last_name, :time_zone) }
   end
+        RUBY
+        end
+
+        inject_into_file 'config/authorization_rules.rb', after: "authorization do\n" do <<-'RUBY'
+
+  role :admin do
+    has_permission_on :caseadilla_users, to: :manage
+  end
+
         RUBY
         end
       when "chicken"
