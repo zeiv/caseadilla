@@ -10,6 +10,7 @@ Rails.application.routes.draw do
         #   patch :update_password, :reset_password
         # end
       end
+      resources :roles
       
       match "/sign_in" => "caseadilla_user_sessions#new", via: :get
       # resource :password_reset, :only => [:create, :edit, :update]

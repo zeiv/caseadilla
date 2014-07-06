@@ -32,12 +32,14 @@
         <div class="container">
           <div id="user-info">
             <ul>
-              <li class="hidden-sm">Hello <%= current_user.first_name %></li>
+              <li class="hidden-sm">Hello <%= link_to current_user.first_name, caseadilla_user_path(current_user) %></li>
               <li class="hidden-sm"><%= Time.zone.name %></li>
-              <li><%= link_to 'Profile', caseadilla_user_path(current_user) %></li>
 
               <% if current_user #.is_admin? %>
                 <li><%= link_to 'Users', caseadilla_users_path %></li>
+              <% end %>
+              <% if current_user #.is_admin? %>
+                <li><%= link_to 'Roles', caseadilla_roles_path %></li>
               <% end %>
 
               <%= render :partial => '/caseadilla/layouts/top_navigation' %>
