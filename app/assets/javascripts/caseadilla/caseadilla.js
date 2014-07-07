@@ -28,6 +28,8 @@ jQuery(document).ready(function() {
 	  }
 	});
 
+	$(".alert").alert();
+
 });
 
 toggleDiv = function(div) {
