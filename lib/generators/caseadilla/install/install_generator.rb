@@ -35,6 +35,8 @@ module Caseadilla
         gem 'simple_form'
         gem 'devise'
         gem 'declarative_authorization', git: 'git://github.com/zeiv/declarative_authorization', branch: '1.0.0' unless options[:skip_decl_auth]
+        gem 'best_in_place'
+        gem 'mercury-rails'
         Bundler.with_clean_env do
           run 'bundle install' unless options[:no_commit]
         end

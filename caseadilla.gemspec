@@ -30,7 +30,6 @@ Gem::Specification.new do |spec|
       spec.add_runtime_dependency(%q<declarative_authorization>, [">= 0.5.7"])
       spec.add_runtime_dependency(%q<scrypt>, ["= 1.2.1"])
       spec.add_runtime_dependency(%q<jquery-rails>, [">= 0"])
-      spec.add_runtime_dependency(%q<best_in_place>, [">= 0"])
     else
       spec.add_dependency(%q<caseadilla>, [">= 0"])
       spec.add_dependency(%q<will_paginate>, ["= 3.0.5"])
@@ -38,7 +37,6 @@ Gem::Specification.new do |spec|
       spec.add_dependency(%q<declarative_authorization>, [">= 0.5.7"])
       spec.add_dependency(%q<scrypt>, ["= 1.2.1"])
       spec.add_dependency(%q<jquery-rails>, [">= 0"])
-      spec.add_dependency(%q<best_in_place>, [">= 0"])
     end
   else
     spec.add_dependency(%q<caseadilla>, [">= 0"])
@@ -47,6 +45,5 @@ Gem::Specification.new do |spec|
     spec.add_dependency(%q<declarative_authorization>, [">= 0.5.7"])
     spec.add_dependency(%q<scrypt>, ["= 1.2.1"])
     spec.add_dependency(%q<jquery-rails>, [">= 0"])
-    spec.add_dependency(%q<best_in_place>, [">= 0"])
   end
 end

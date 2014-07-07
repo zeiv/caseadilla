@@ -2,6 +2,7 @@
  *= require ./bootstrap.css
  *= require ./bootstrap-glyphicons.css
  *= require ./caseadilla-bootstrap-overrides.css
+ *= require ./bootstrap-wysihtml5.css
 */
 
 /* Caseadilla LAYOUT */
@@ -254,6 +255,11 @@ label.control-label small {
 	margin-left: 2%;
 	margin-right: 2%;
 	margin-bottom: 20px;
+}
+
+ul.wysihtml5-toolbar ul.dropdown-menu {
+	top: 84px;
+	left: 5px;
 }
 
 @media (min-width: 992px){

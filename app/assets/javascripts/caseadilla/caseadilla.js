@@ -1,6 +1,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require ./bootstrap.js
+//= require ./wysihtml5-0.3.0.min.js
+//= require ./bootstrap3-wysihtml5.js
 
 jQuery(document).ready(function() {
 
@@ -29,6 +31,10 @@ jQuery(document).ready(function() {
 	});
 
 	$(".alert").alert();
+
+    $('.wysihtml5').each(function(i, elem) {
+      $(elem).wysihtml5();
+    });
 
 });
 
