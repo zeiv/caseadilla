@@ -35,5 +35,8 @@
 <%= content_for :sidebar do %>
   <% if current_user #.is_admin? %>
       <li><%= link_to "#{caseadilla_show_icon('th-list')}Back to list".html_safe, caseadilla_users_path %></li>
+      <% if current_user == @caseadilla_user %>        
+        <li><%= link_to "#{caseadilla_show_icon('pencil')}Change password".html_safe, change_password_caseadilla_user_path %></li>
+      <% end %>
   <% end %>
 <% end %>

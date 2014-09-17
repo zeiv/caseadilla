@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   
     if Caseadilla::Engine.flavor = :steak
       resources :users do
-        # member do
-        #   patch :update_password, :reset_password
-        # end
+        member do
+          get :change_password
+          # patch :update_password, :reset_password
+        end
       end
       resources :roles
       

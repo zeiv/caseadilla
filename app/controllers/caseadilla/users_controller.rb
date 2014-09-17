@@ -51,6 +51,12 @@ module Caseadilla
         return
       end
     end
+
+    # This action not related to update_password action
+    def change_password
+      @caseadilla_user = User.find params[:id]
+      @caseadilla_page_title = "#{@caseadilla_user.first_name} #{@caseadilla_user.last_name} > Change password"
+    end
  
     def update_password
       @caseadilla_user = User.find params[:id]
@@ -111,7 +117,7 @@ module Caseadilla
       end
 
       def caseadilla_user_params
-        params.require(:user).permit(:email, :first_name, :last_name, :time_zone, :role, :role_id, :password, :password_confirmation)
+        params.require(:user).permit(:email, :first_name, :last_name, :time_zone, :role, :role_id, :password, :password_confirmation, :current_password)
       end
  
   end
