@@ -3,25 +3,25 @@
 <%= simple_form_for @caseadilla_user, as: resource_name, url: caseadilla_user_path(@caseadilla_user), html:{ method: :put } do |f| %>
 
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-md-6">
       <%= caseadilla_text_field f, f.object, :first_name, {value: @caseadilla_user.first_name, caseadilla_label: "First name"} %>
     </div>
-    <div class="col-lg-6">
+    <div class="col-md-6">
       <%= caseadilla_text_field f, f.object, :last_name, {value: @caseadilla_user.last_name, caseadilla_label: "Last name"} %>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-md-6">
       <%= caseadilla_text_field f, f.object, :email, {value: @caseadilla_user.email} %>
     </div>
-    <div class="col-lg-6">
+    <div class="col-md-6">
       <%= caseadilla_time_zone_select f, f.object, :time_zone, ActiveSupport::TimeZone.us_zones, {selected: @caseadilla_user.time_zone} %>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-md-6">
       <%= caseadilla_collection_select f, f.object, :role_id, Role.all, :id, :title, {selected: @caseadilla_user.role_id} %>
     </div>
   </div>
