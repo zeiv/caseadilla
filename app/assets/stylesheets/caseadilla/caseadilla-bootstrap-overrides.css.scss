@@ -19,6 +19,26 @@
 	padding-bottom: 25px;
 }
 
+.navbar-default {
+	background-color: transparent;
+	border-bottom: none;
+}
+
+div.navbar.navbar-static-top.navbar-default.caseadilla-nav button.navbar-toggle {
+	position: relative;
+	top: 2px;
+	left: 0px;
+}
+
+div.navbar.navbar-static-top.navbar-default.caseadilla-nav > div.navbar-offcanvas.offcanvas.navbar-inverse {
+	background-color: #222;
+	border-color: #080808;
+	li.divider {
+		border-bottom: 1px solid #333;
+		width: 100%;
+	}
+}
+
 .navbar-nav > li > a:hover,
 .navbar-nav > li > a:focus {
 	color: #000000;
