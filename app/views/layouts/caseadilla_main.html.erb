@@ -31,7 +31,7 @@
   <body>
     <div class="navbar navbar-static-top navbar-default caseadilla-nav" role="navigation">
       <% if current_user != nil %>
-        <div class="container hidden-sm hidden-xs">
+        <div class="container hidden-xs">
           <div id="user-info">
             <ul>
               <li>Hello <%= link_to current_user.first_name, caseadilla_user_path(current_user) %></li>
@@ -60,15 +60,17 @@
         </button> 
       </div>
 
-      <div class="container hidden-sm hidden-xs">    
+      <div class="container hidden-xs">    
         <ul class="nav navbar-nav">
           <%= render :partial => '/caseadilla/layouts/tab_navigation' %>
         </ul>
       </div>
 
       <div class='navbar-offcanvas offcanvas navbar-inverse'>
-        <div class="container hidden-md hidden-lg">    
+        <div class="container hidden-sm hidden-md hidden-lg">    
           <ul class="nav navbar-nav">
+          <li><%= link_to 'Home', caseadilla_root_path %></li>
+            <li class="divider"></li>
             <%= render :partial => '/caseadilla/layouts/tab_navigation' %>
             <li class="divider"></li>
             <% if current_user != nil %>
