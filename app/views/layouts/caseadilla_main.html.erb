@@ -9,7 +9,7 @@
   		<%= stylesheet_link_tag(stylesheet) %>
   	<% end %>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
-  	
+
   	<% caseadilla_config_javascript_includes.each do |javascript| %>
   		<%= javascript_include_tag(javascript) %>
   	<% end %>
@@ -35,7 +35,7 @@
           <div id="user-info">
             <ul>
               <li>Hello <%= link_to current_user.first_name, caseadilla_user_path(current_user) %></li>
-              <li><%= Time.zone.name %></li>
+              <li><%= current_user.time_zone || Time.zone.name %></li>
 
               <% if current_user #.is_admin? %>
                 <li><%= link_to 'Users', caseadilla_users_path %></li>
@@ -57,17 +57,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-        </button> 
+        </button>
       </div>
 
-      <div class="container hidden-xs">    
+      <div class="container hidden-xs">
         <ul class="nav navbar-nav">
           <%= render :partial => '/caseadilla/layouts/tab_navigation' %>
         </ul>
       </div>
 
       <div class='navbar-offcanvas offcanvas navbar-inverse'>
-        <div class="container hidden-sm hidden-md hidden-lg">    
+        <div class="container hidden-sm hidden-md hidden-lg">
           <ul class="nav navbar-nav">
           <li><%= link_to 'Home', caseadilla_root_path %></li>
             <li class="divider"></li>
@@ -121,9 +121,9 @@
                 <%= yield :help %>
               </div>
             <% end %>
-            
+
             <%= yield %>
-            
+
             </div>
 
         </div>
