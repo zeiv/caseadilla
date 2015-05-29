@@ -26,20 +26,20 @@ Gem::Specification.new do |spec|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       spec.add_runtime_dependency(%q<will_paginate>, ["~> 3.0"])
       spec.add_runtime_dependency(%q<devise>, ["~> 3.2"])
-      spec.add_runtime_dependency(%q<declarative_authorization>, ["= 1.0.0.pre"])
+      spec.add_runtime_dependency(%q<zeiv-declarative_authorization>, [">= 1.0.0.pre"])
       spec.add_runtime_dependency(%q<scrypt>, ["~> 1.2"])
       spec.add_runtime_dependency(%q<jquery-rails>, ["> 0"])
     else
       spec.add_dependency(%q<will_paginate>, ["~> 3.0"])
       spec.add_dependency(%q<devise>, ["~> 3.2"])
-      spec.add_dependency(%q<declarative_authorization>, ["= 1.0.0.pre"])
+      spec.add_dependency(%q<zeiv-declarative_authorization>, [">= 1.0.0.pre"])
       spec.add_dependency(%q<scrypt>, ["~> 1.2.1"])
       spec.add_dependency(%q<jquery-rails>, ["> 0"])
     end
   else
     spec.add_dependency(%q<will_paginate>, ["~> 3.0"])
     spec.add_dependency(%q<devise>, ["~> 3.2"])
-    spec.add_dependency(%q<declarative_authorization>, ["= 1.0.0.pre"])
+    spec.add_dependency(%q<zeiv-declarative_authorization>, [">= 1.0.0.pre"])
     spec.add_dependency(%q<scrypt>, ["~> 1.2"])
     spec.add_dependency(%q<jquery-rails>, ["> 0"])
   end
