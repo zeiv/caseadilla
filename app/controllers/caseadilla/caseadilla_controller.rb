@@ -11,10 +11,10 @@ module Caseadilla
 
     # before_filter :set_time_zone
     before_action :require_sign_in
-    
+
     ActionView::Base.field_error_proc = proc { |input, instance| "#{input}".html_safe }
 
-    def index		
+    def index
   		redirect_to caseadilla_config_dashboard_url
     end
 
@@ -35,11 +35,11 @@ module Caseadilla
     def veggie?
       return false unless Caseadilla::Engine.flavor = :veggie
     end
-    
+
     # def set_time_zone
     #   Time.zone = current_user.time_zone if current_user
     # end
-    
+
     def redirect_back_or_default(default)
       redirect_to(session[:return_to] || default)
       session[:return_to] = nil

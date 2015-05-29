@@ -1,6 +1,6 @@
 module Caseadilla
   class InstallGenerator < Rails::Generators::Base
-    
+
     include Rails::Generators::Migration
     source_root File.expand_path('../templates', __FILE__)
     argument :flavor, type: :string, default: "auto"
@@ -52,6 +52,15 @@ module Caseadilla
 
         migration_template 'steak/db/migrate/add_name_to_users.rb', "db/migrate/add_name_to_users.rb"
         rake 'db:migrate' unless options[:no_commit]
+
+        inject_into_file "app/controllers/application_controller.rb", after: ":exception" do <<-'RUBY'
+
+
+  def after_sign_in_path_for(resource)
+    URI(request.referer).path == '/caseadilla/sign_in' ? caseadilla_root_path : root_path
+  end
+        RUBY
+        end
 
         inject_into_file "app/models/#{options[:auth_model].downcase}.rb", "  before_create :add_user_role", after: "belongs_to :role\n"
         inject_into_file "app/models/#{options[:auth_model].downcase}.rb", after: /def role_symbols.*?end\n/m do <<-'RUBY'
