@@ -11,13 +11,15 @@ namespace :caseadilla do
         raise "Usage: specify email address, first and last name, and a password. \nE.g. rake [task] email=mail@example.com first_name=John last_name=Doe password=password123"
       end
 
-      admin = User.new({email: ENV['email'], first_name: ENV['first_name'], last_name: ENV['last_name'], password: ENV['password'], role: Role.find_by_title('admin') })
+      admin = User.new({email: ENV['email'], first_name: ENV['first_name'], last_name: ENV['last_name'], password: ENV['password'] })
 
       unless admin.save
         puts "[Caseadilla] Failed: check that the account doesn't already exist."
       else
         puts "[Caseadilla] Created new admin user with email '#{ENV['email']}' and password '#{ENV['password']}'"
       end
+      admin.role = Role.find_by_title 'admin'
+      admin.save!
     end
 
     desc "Remove all users"
