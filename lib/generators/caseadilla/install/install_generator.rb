@@ -114,6 +114,7 @@ module Caseadilla
         inject_into_file 'config/authorization_rules.rb', after: "authorization do\n" do <<-'RUBY'
 
   role :admin do
+    has_permission_on :caseadilla, to: :access
     has_permission_on :caseadilla_users, to: [:manage, :change_password]
     has_permission_on :caseadilla_roles, to: :manage
   end

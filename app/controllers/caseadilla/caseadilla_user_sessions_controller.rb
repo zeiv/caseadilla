@@ -1,7 +1,9 @@
 module Caseadilla
   class CaseadillaUserSessionsController < Caseadilla::CaseadillaController
+    # filter_access_to [:create]
 
     skip_before_action :require_sign_in, :only => [:new, :create]
+    skip_before_action :redirect_if_not_authorized, only: [:new, :create]
     before_filter :requires_no_session_user, :except => [:destroy]
 
     layout 'caseadilla_auth'
