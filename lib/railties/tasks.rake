@@ -7,21 +7,22 @@ namespace :caseadilla do
     desc "Create default admin user"
     task create_admin: :environment do
 
-      raise "Usage: specify email address, e.g. rake [task] email=mail@caseadillacms.com" unless ENV.include?("email")
+      unless ENV.include?("email") and ENV.include?("first_name") and ENV.include?("last_name") and ENV.include?("password")
+        raise "Usage: specify email address, first and last name, and a password. \nE.g. rake [task] email=mail@example.com first_name=John last_name=Doe password=password123"
+      end
 
-      random_password = random_string = SecureRandom.hex
-      admin = Caseadilla::AdminUser.new({ login: 'admin', name: 'Admin', email: ENV['email'], access_level: $CASEIN_USER_ACCESS_LEVEL_ADMIN, password: random_password, password_confirmation: random_password })
+      admin = User.new({email: ENV['email'], first_name: ENV['first_name'], last_name: ENV['last_name'], password: ENV['password'], role: Role.find_by_title('admin') })
 
       unless admin.save
-        puts "[Caseadilla] Failed: check that the 'admin' account doesn't already exist."
+        puts "[Caseadilla] Failed: check that the account doesn't already exist."
       else
-        puts "[Caseadilla] Created new admin user with username 'admin' and password '#{random_password}'"
+        puts "[Caseadilla] Created new admin user with email '#{ENV['email']}' and password '#{ENV['password']}'"
       end
     end
 
     desc "Remove all users"
     task remove_all: :environment do
-      users = Caseadilla::AdminUser.all
+      users = User.all
       num_users = users.size
       users.destroy_all
       puts "[Caseadilla] Removed #{num_users} user(s)"
