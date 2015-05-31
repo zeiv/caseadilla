@@ -33,9 +33,8 @@
 
 <% end %>
 
-<%= simple_form_for @caseadilla_user, as: resource_name, url: caseadilla_user_path(@caseadilla_user), html:{ method: :put } do |f| %>
-
-  <% if current_user.role_id < @user.role_id %>
+<% if current_user.role_id < @user.role_id %>
+  <%= simple_form_for @caseadilla_user, as: resource_name, url: caseadilla_user_path(@caseadilla_user), html:{ method: :put } do |f| %>
     <h2>Reset password <small>(admin action &mdash; use carefully)</small></h2>
     <div class="row">
       <div class="col-lg-6">
@@ -57,7 +56,6 @@
   <p class="submits">
     <%= f.submit "Reset password", :class => "btn btn-mini btn-warning" %>
   </p>
-
 <% end %>
 
 <%= content_for :sidebar do %>
