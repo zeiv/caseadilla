@@ -1,8 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require ./bootstrap.js
-//= require ./wysihtml5-0.3.0.min.js
-//= require ./bootstrap3-wysihtml5.js
+//
 
 jQuery(document).ready(function() {
 
@@ -32,9 +31,12 @@ jQuery(document).ready(function() {
 
 	$(".alert").alert();
 
-    $('.wysihtml5').each(function(i, elem) {
-      $(elem).wysihtml5();
-    });
+  $('.wysiwym').each(function(i, elem) {
+    $(elem).wymeditor({
+			basePath: "/assets/caseadilla/wymeditor/",
+			skin: "compact"
+		});
+  });
 
 });
 
@@ -47,5 +49,5 @@ toggleDiv = function(div) {
 		case "block":
 			$("#"+div).fadeOut(300);
 		break;
-	}	
+	}
 }

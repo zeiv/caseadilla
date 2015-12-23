@@ -124,9 +124,9 @@ module Caseadilla
       caseadilla_form_tag_wrapper(form.text_area(attribute, strip_caseadilla_options(options_hash_with_merged_classes(options, 'form-control'))), form, obj, attribute, options).html_safe
     end
 
-    def caseadilla_text_area_wysiwyg form, obj, attribute, options = {}
+    def caseadilla_text_area_wysiwym form, obj, attribute, options = {}
       options.reverse_merge!({style: "height: 250px;"})
-      caseadilla_form_tag_wrapper(form.text_area(attribute, strip_caseadilla_options(options_hash_with_merged_classes(options, 'form-control wysihtml5'))), form, obj, attribute, options).html_safe
+      caseadilla_form_tag_wrapper(form.text_area(attribute, strip_caseadilla_options(options_hash_with_merged_classes(options, 'form-control wysiwym'))), form, obj, attribute, options).html_safe
     end
 
     def caseadilla_check_box form, obj, attribute, options = {}

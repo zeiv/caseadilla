@@ -101,7 +101,7 @@ module Caseadilla
         when :time, :timestamp            then :time_select
         when :datetime                    then :datetime_select
         when :string                      then :text_field
-        when :text                        then :text_area_wysiwyg
+        when :text                        then :text_area_wysiwym
         when :boolean                     then :check_box
       else
         :text_field

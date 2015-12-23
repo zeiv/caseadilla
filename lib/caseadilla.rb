@@ -1,7 +1,7 @@
 require "caseadilla/version"
 
 if defined?(Rails) && Rails::VERSION::MAJOR == 4
-	require 'caseadilla/engine' 
+	require 'caseadilla/engine'
 	require 'will_paginate'
 	if Caseadilla::Engine.flavor = :steak
 		require 'devise'

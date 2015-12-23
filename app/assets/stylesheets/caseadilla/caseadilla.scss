@@ -2,10 +2,11 @@
  *= require ./bootstrap.css
  *= require ./bootstrap-glyphicons.css
  *= require ./caseadilla-bootstrap-overrides.css
- *= require ./bootstrap-wysihtml5.css
 */
 
 /* Caseadilla LAYOUT */
+
+// @import "bootstrap-wysihtml5/bootstrap3-wysihtml5";
 
 @media (min-width: 992px){
 
@@ -232,7 +233,7 @@ label.control-label small {
 	font-weight: normal;
 	color: #666;
 	margin-left: 5px;
-	font-size: 0.8em; 
+	font-size: 0.8em;
 }
 
 .caseadilla-date-select select {
