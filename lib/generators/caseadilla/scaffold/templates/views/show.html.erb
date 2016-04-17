@@ -5,10 +5,10 @@
 <%%= form_for @<%= file_name %>, :url => caseadilla_<%= singular_name %>_path(@<%= singular_name %>) do |f| %>
 
 	<%%= render :partial => 'caseadilla/<%= plural_name %>/form', :locals => { :f => f } %>
-<% unless @read_only %>	
+<% unless @read_only %>
 	<p class="submits">
 	  	<%%= link_to 'Cancel', caseadilla_<%= @plural_route %>_path, :class => 'btn btn-mini btn-danger' %>
-		<%%= f.submit "Save changes", :class => "btn btn-mini btn-primary" %>
+		<%%= f.submit "Save changes", :class => "btn btn-mini btn-primary wymupdate" %>
 	</p>
 <% end %>
 <%% end %>
