@@ -30,12 +30,14 @@ Gem::Specification.new do |spec|
       spec.add_runtime_dependency(%q<zeiv-declarative_authorization>, [">= 1.0.0.pre"])
       spec.add_runtime_dependency(%q<scrypt>, ["~> 1.2"])
       spec.add_runtime_dependency(%q<jquery-rails>, ["> 0"])
+      spec.add_runtime_dependency(%q<non-stupid-digest-assets>, ["~> 1.0"])
     else
       spec.add_dependency(%q<will_paginate>, ["~> 3.0"])
       spec.add_dependency(%q<devise>, ["~> 3.2"])
       spec.add_dependency(%q<zeiv-declarative_authorization>, [">= 1.0.0.pre"])
       spec.add_dependency(%q<scrypt>, ["~> 1.2.1"])
       spec.add_dependency(%q<jquery-rails>, ["> 0"])
+      spec.add_dependency(%q<non-stupid-digest-assets>, ["~> 1.0"])
     end
   else
     spec.add_dependency(%q<will_paginate>, ["~> 3.0"])
@@ -43,5 +45,6 @@ Gem::Specification.new do |spec|
     spec.add_dependency(%q<zeiv-declarative_authorization>, [">= 1.0.0.pre"])
     spec.add_dependency(%q<scrypt>, ["~> 1.2"])
     spec.add_dependency(%q<jquery-rails>, ["> 0"])
+    spec.add_dependency(%q<non-stupid-digest-assets>, ["~> 1.0"])
   end
 end
