@@ -14,7 +14,7 @@ module Caseadilla
     end
 
     initializer "caseadilla.assets.precompile" do |app|
-      app.config.assets.precompile += %w(caseadilla/*.svg caseadilla/*.eot caseadilla/*.woff caseadilla/*.ttf caseadilla/login.css caseadilla/caseadilla.css caseadilla/caseadilla.js caseadilla/html5shiv.js caseadilla/custom.css caseadilla/custom.js caseadilla/*.png caseadilla/*.css caseadilla/*.js)
+      app.config.assets.precompile += %w(caseadilla/*.svg caseadilla/*.eot caseadilla/*.woff caseadilla/*.ttf caseadilla/login.css caseadilla/caseadilla.css caseadilla/caseadilla.js caseadilla/html5shiv.js caseadilla/custom.css caseadilla/custom.js caseadilla/*.png caseadilla/*.css caseadilla/*.js caseadilla/*.html)
     end
 
     rake_tasks do
