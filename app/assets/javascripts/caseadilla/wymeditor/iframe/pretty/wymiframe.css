@@ -63,11 +63,11 @@
   ol > li ul,
   ol > li ol    { border-top: 4px solid #B9C4D0 }
   li > p:first-child,
-  li > div:first-child { margin-top: 0 } 
+  li > div:first-child { margin-top: 0 }
   li > p:last-child,
   li > div:last-child {	margin-bottom: 0 }
-  li, 
-  dd, 
+  li,
+  dd,
   dt            { background: white;
                   margin: 0px 0 4px 20px;
                   padding: 8px 0 0 5px; }
@@ -113,7 +113,7 @@
 br { height: 5px; line-height: 5px; }
 
 /* labels: block elements; IE9 support ::before: http://stackoverflow.com/questions/7157405/are-css3-after-and-before-pseudo-elements-rendered-by-ie9  */
-div, p, ol, ul, dl, li, dt, dd, h1, h2, h3, h4, h5, h6, blockquote, 
+div, p, ol, ul, dl, li, dt, dd, h1, h2, h3, h4, h5, h6, blockquote,
 pre, address {
 	position: relative;
 }
@@ -145,7 +145,7 @@ address::before {
     -khtml-user-select: none;
     -moz-user-select: none;
     -o-user-select: none;
-    -ms-user-select: none;  
+    -ms-user-select: none;
     user-select: none;
     cursor: default;
     white-space: nowrap;
@@ -168,7 +168,7 @@ blockquote:hover::before,
 pre:hover::before,
 address:hover::before {
 	color: rgb(65,105,225);
-	background: rgba(255,255,255,0.);
+	background: rgba(255,255,255,0.3);
 	outline: 1px solid rgba(65,105,225,0.9);
 }
 div::before                          { content: "document division" } /* official names: https://developer.mozilla.org/en/HTML/Element */
@@ -257,7 +257,7 @@ dl[class]:not(:empty)::before, body:not(.short) dl:not(:empty)::before {
 }
 
 /* labels: inline elements */
-span, strong, b, em, i, a, abbr, acronym, kbd, q, cite, samp, var, del, 
+span, strong, b, em, i, a, abbr, acronym, kbd, q, cite, samp, var, del,
 ins, dfn, code, sup, sub {
 	position: relative;
 }
@@ -293,7 +293,7 @@ sub:hover::before {
     -khtml-user-select: none;
     -moz-user-select: none;
     -o-user-select: none;
-    -ms-user-select: none;  
+    -ms-user-select: none;
     user-select: none;
     cursor: default;
     white-space: nowrap;
