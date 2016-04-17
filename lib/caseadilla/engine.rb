@@ -8,21 +8,21 @@ module Caseadilla
     class << self
       attr_accessor :flavor
     end
-    
+
     config.after_initialize do
       Rails.application.config.assets.paths << root.join("app", "assets", "fonts")
     end
 
     initializer "caseadilla.assets.precompile" do |app|
-      app.config.assets.precompile += %w(caseadilla/*.svg caseadilla/*.eot caseadilla/*.woff caseadilla/*.ttf caseadilla/login.css caseadilla/caseadilla.css caseadilla/caseadilla.js caseadilla/html5shiv.js caseadilla/custom.css caseadilla/custom.js caseadilla/*.png)
+      app.config.assets.precompile += %w(caseadilla/*.svg caseadilla/*.eot caseadilla/*.woff caseadilla/*.ttf caseadilla/login.css caseadilla/caseadilla.css caseadilla/caseadilla.js caseadilla/html5shiv.js caseadilla/custom.css caseadilla/custom.js caseadilla/*.png caseadilla/*.css caseadilla/*.js)
     end
 
     rake_tasks do
       load "railties/tasks.rake"
     end
-    
+
   end
-  
+
   class RouteConstraint
 
      def matches?(request)
