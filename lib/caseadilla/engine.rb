@@ -1,6 +1,3 @@
-require "caseadilla"
-require "rails"
-
 module Caseadilla
   class Engine < Rails::Engine
     @flavor = nil
@@ -20,16 +17,13 @@ module Caseadilla
     rake_tasks do
       load "railties/tasks.rake"
     end
-
   end
 
   class RouteConstraint
-
-     def matches?(request)
-       return false if request.fullpath.include?("/caseadilla")
-       return false if request.fullpath.include?("/admin")
-       true
-     end
-
-   end
+    def matches?(request)
+      return false if request.fullpath.include?("/caseadilla")
+      return false if request.fullpath.include?("/admin")
+      true
+    end
+  end
 end
