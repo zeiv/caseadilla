@@ -12,7 +12,7 @@ module Caseadilla
 
     # before_filter :set_time_zone
     before_action :require_sign_in
-    before_action :redirect_if_not_authorized
+    # before_action :redirect_if_not_authorized
     # skip_before_action :redirect_if_not_authorized, only: :index
 
     ActionView::Base.field_error_proc = proc { |input, instance| "#{input}".html_safe }
@@ -46,13 +46,6 @@ module Caseadilla
     def redirect_back_or_default(default)
       redirect_to(session[:return_to] || default)
       session[:return_to] = nil
-    end
-
-    def redirect_if_not_authorized
-      auth = Authorization::Engine.new
-      unless auth.permit? :access, user: current_user, context: :caseadilla
-        redirect_to root_path, alert: "You are not authorized to access that page."
-      end
     end
 
     def sort_order(default)

@@ -12,14 +12,14 @@ Gem::Specification.new do |spec|
   spec.summary       = "A powerful yet unobtrusive CMS and data management system for Rails."
   spec.homepage      = "http://www.github.com/zeiv/caseadilla"
   spec.license       = "MIT"
-  spec.required_ruby_version = ">= 2.0.0"
+  spec.required_ruby_version = ">= 2.3.0"
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.11"
+  spec.add_development_dependency "bundler", "~> 1.12"
   spec.add_development_dependency "rake", "> 10"
   spec.add_development_dependency "minitest", "~> 5.0"
   spec.add_development_dependency "rails", ">= 5"
@@ -28,9 +28,6 @@ Gem::Specification.new do |spec|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       spec.add_runtime_dependency(%q<rails>, [">= 5"])
-      spec.add_runtime_dependency(%q<will_paginate>, ["~> 3.1"])
-      spec.add_runtime_dependency(%q<devise>, ["~> 4.2"])
-      spec.add_runtime_dependency(%q<authoreyes>)
       spec.add_runtime_dependency(%q<scrypt>, ["~> 1.2"])
       spec.add_runtime_dependency(%q<jquery-rails>, ["> 0"])
       spec.add_runtime_dependency(%q<non-stupid-digest-assets>, ["~> 1.0"])
@@ -38,7 +35,7 @@ Gem::Specification.new do |spec|
       spec.add_dependency(%q<rails>, [">= 5"])
       spec.add_dependency(%q<will_paginate>, ["~> 3.1"])
       spec.add_dependency(%q<devise>, ["~> 4.2"])
-      spec.add_dependency(%q<authoreyes>)
+      spec.add_dependency(%q<authoreyes>, ['~> 0.2.0'])
       spec.add_dependency(%q<scrypt>, ["~> 1.2.1"])
       spec.add_dependency(%q<jquery-rails>, ["> 0"])
       spec.add_dependency(%q<non-stupid-digest-assets>, ["~> 1.0"])
@@ -47,7 +44,7 @@ Gem::Specification.new do |spec|
     spec.add_dependency(%q<rails>, [">= 5"])
     spec.add_dependency(%q<will_paginate>, ["~> 3.1"])
     spec.add_dependency(%q<devise>, ["~> 4.2"])
-    spec.add_dependency(%q<authoreyes>)
+    spec.add_dependency(%q<authoreyes>, ['~> 0.2.0'])
     spec.add_dependency(%q<scrypt>, ["~> 1.2"])
     spec.add_dependency(%q<jquery-rails>, ["> 0"])
     spec.add_dependency(%q<non-stupid-digest-assets>, ["~> 1.0"])

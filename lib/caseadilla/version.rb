@@ -1,3 +1,3 @@
 module Caseadilla
-  VERSION = "0.0.19"
+  VERSION = "2.0.0-pre.1"
 end

@@ -6,6 +6,8 @@ Caseadilla is a Rails application back-end development tool and CMS designed to 
 
 ## Installation
 
+__NOTE:__ Version 1.0.0 and greater work for Rails 5 and Ruby 2.3 only.  For earlier versions of Ruby and Rails, please use Caseadilla version 0.0.19.
+
 Add this line to your application's Gemfile:
 
     gem 'caseadilla'
